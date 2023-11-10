@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 
 public class CartaBehaviour : MonoBehaviour
 {
-    [SerializeField] private CartaScriptableObject _datos;
+    [SerializeField] public CartaScriptableObject _datos;
 
     [SerializeField] private TMP_Text _nombreText;
     [SerializeField] private TMP_Text _nivelDeAtaqueText; 
