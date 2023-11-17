@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System;
 
-public class GuardadoArchivo : MonoBehaviour
+// es posible parametrizar un tipo 
+// osea dejarlo abierto a lo que decida un programador posteriormente
+// a este mecanismo le llamamos generic
+public class GuardadoArchivo<T> : MonoBehaviour
 {
     // OJO - manejo de recursos - utilizar singleton
-    public static GuardadoArchivo Instance {
+    public static GuardadoArchivo<T> Instance {
         get;
         private set;
     }
 
-    public Datos _datos;
     private string _ruta;
 
     void Awake() 
@@ -34,10 +37,9 @@ public class GuardadoArchivo : MonoBehaviour
             print(_ruta);
         }
 
-        _datos = Cargar();
     }
 
-    public void Guardar() 
+    public void Guardar(T datos) 
     {
 
         print("GUARDANDO");
@@ -49,20 +51,21 @@ public class GuardadoArchivo : MonoBehaviour
         BinaryFormatter convertidor = new BinaryFormatter();
 
         // serializamos objeto en archivo 
-        convertidor.Serialize(datosStream, _datos);
+        convertidor.Serialize(datosStream, datos);
 
         // cerramos archivo
         datosStream.Close();
     }
 
-    public Datos Cargar()
+
+    public object Cargar()
     {
 
         print("CARGANDO");
 
         if(File.Exists(_ruta)) {
 
-            // abrir archivo
+            // abrir archivos
             FileStream datosStream = new FileStream(_ruta, FileMode.Open);
 
             // creamos objeto serializador / deserializador
@@ -70,13 +73,13 @@ public class GuardadoArchivo : MonoBehaviour
 
             // aquí deserializamos
             // de binario -> objeto en memoria
-            Datos datosCargados = convertidor.Deserialize(datosStream) as Datos;
+            object datosCargados = convertidor.Deserialize(datosStream);
 
             datosStream.Close();
             
             return datosCargados;
         }
 
-        return new Datos();
+        return null;
     }
 }

@@ -1,0 +1,16 @@
+{
+    "name": "Test2",
+    "rootNamespace": "",
+    "references": [
+        "GUID:37ff67d643607c99e87826db9dddd242"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

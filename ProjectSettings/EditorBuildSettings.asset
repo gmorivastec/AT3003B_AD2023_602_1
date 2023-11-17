@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/RevisionTarea2y3.unity
+    guid: bbfe35aa088e4cf7fad45defa6887be5
   m_configObjects: {}
